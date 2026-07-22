@@ -1,0 +1,35 @@
+<div class="encabezado">
+  <h2>Movimientos de inventario</h2>
+  <a *ngIf="authService.estaAutenticado()" class="btn" routerLink="/movimientos/nuevo">
+    + Registrar movimiento
+  </a>
+</div>
+
+<p *ngIf="cargando">Cargando movimientos...</p>
+<p class="error" *ngIf="errorMensaje">{{ errorMensaje }}</p>
+
+<table class="tabla" *ngIf="!cargando && movimientos.length">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Producto</th>
+      <th>Tipo</th>
+      <th>Cantidad</th>
+      <th>Motivo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mov of movimientos">
+      <!-- Pipe "date": formatea el string ISO de fecha que llega del backend -->
+      <td>{{ mov.fecha | date: "dd/MM/yyyy HH:mm" }}</td>
+      <td>{{ mov.producto?.nombre || "—" }}</td>
+      <td [class.entrada]="mov.tipo === 'ENTRADA'" [class.salida]="mov.tipo === 'SALIDA'">
+        {{ mov.tipo }}
+      </td>
+      <td>{{ mov.cantidad }}</td>
+      <td>{{ mov.motivo || "—" }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!cargando && !movimientos.length">No hay movimientos registrados todavía.</p>

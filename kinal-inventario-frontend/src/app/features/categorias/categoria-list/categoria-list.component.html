@@ -1,0 +1,34 @@
+<div class="encabezado">
+  <h2>Categorías</h2>
+  <a *ngIf="authService.estaAutenticado()" class="btn" routerLink="/categorias/nuevo">
+    + Nueva categoría
+  </a>
+</div>
+
+<p *ngIf="cargando">Cargando categorías...</p>
+<p class="error" *ngIf="errorMensaje">{{ errorMensaje }}</p>
+
+<table class="tabla" *ngIf="!cargando && categorias.length">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th># Productos</th>
+      <th *ngIf="authService.estaAutenticado()">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- *ngFor: directiva estructural que repite el <tr> por cada elemento del arreglo -->
+    <tr *ngFor="let categoria of categorias">
+      <td>{{ categoria.nombre }}</td>
+      <td>{{ categoria.descripcion || "—" }}</td>
+      <td>{{ categoria._count?.productos ?? 0 }}</td>
+      <td *ngIf="authService.estaAutenticado()">
+        <a [routerLink]="['/categorias/editar', categoria.id]">Editar</a>
+        <button (click)="eliminar(categoria)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!cargando && !categorias.length">No hay categorías registradas todavíaa.</p>

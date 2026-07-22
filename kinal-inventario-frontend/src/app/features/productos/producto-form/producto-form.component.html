@@ -1,0 +1,61 @@
+<div class="tarjeta">
+  <h2>{{ modoEdicion ? "Editar producto" : "Nuevo producto" }}</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="campo">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" formControlName="nombre" />
+      <small class="error" *ngIf="nombre.invalid && nombre.touched">
+        El nombre debe tener al menos 2 caracteres
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" formControlName="descripcion" rows="2"></textarea>
+    </div>
+
+    <div class="campo">
+      <label for="categoriaId">Categoría</label>
+      <!-- formControlName conecta el <select> al FormControl "categoriaId" -->
+      <select id="categoriaId" formControlName="categoriaId">
+        <option [ngValue]="null" disabled>Selecciona una categoría</option>
+        <option *ngFor="let categoria of categorias" [ngValue]="categoria.id">
+          {{ categoria.nombre }}
+        </option>
+      </select>
+      <small class="error" *ngIf="categoriaId.invalid && categoriaId.touched">
+        Debes seleccionar una categoría
+      </small>
+    </div>
+
+    <div class="fila">
+      <div class="campo">
+        <label for="precio">Precio (Q)</label>
+        <input id="precio" type="number" step="0.01" formControlName="precio" />
+        <small class="error" *ngIf="precio.invalid && precio.touched">
+          El precio debe ser mayor a 0
+        </small>
+      </div>
+
+      <div class="campo">
+        <label for="stock">Stock inicial</label>
+        <input id="stock" type="number" formControlName="stock" />
+      </div>
+
+      <div class="campo">
+        <label for="stockMinimo">Stock mínimo</label>
+        <input id="stockMinimo" type="number" formControlName="stockMinimo" />
+      </div>
+    </div>
+
+    <small class="error" *ngIf="errorMensaje">{{ errorMensaje }}</small>
+
+    <div class="acciones-form">
+      <button type="submit" [disabled]="cargando">
+        {{ cargando ? "Guardando..." : "Guardar" }}
+      </button>
+      <a routerLink="/productos">Cancelar</a>
+    </div>
+  </form>
+</div>

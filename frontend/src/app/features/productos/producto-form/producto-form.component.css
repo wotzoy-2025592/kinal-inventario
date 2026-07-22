@@ -1,0 +1,7 @@
+.fila {
+  display: flex;
+  gap: 1rem;
+}
+.fila .campo {
+  flex: 1;
+}

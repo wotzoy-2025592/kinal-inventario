@@ -1,0 +1,27 @@
+<div class="tarjeta">
+  <h2>{{ modoEdicion ? "Editar categoría" : "Nueva categoría" }}</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="campo">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" formControlName="nombre" />
+      <small class="error" *ngIf="nombre.invalid && nombre.touched">
+        El nombre debe tener al menos 2 caracteres
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" formControlName="descripcion" rows="3"></textarea>
+    </div>
+
+    <small class="error" *ngIf="errorMensaje">{{ errorMensaje }}</small>
+
+    <div class="acciones-form">
+      <button type="submit" [disabled]="cargando">
+        {{ cargando ? "Guardando..." : "Guardar" }}
+      </button>
+      <a routerLink="/categorias">Cancelar</a>
+    </div>
+  </form>
+</div>

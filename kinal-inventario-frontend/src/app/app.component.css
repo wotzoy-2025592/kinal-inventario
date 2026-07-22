@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  background: #1e3a5f;
+  color: #fff;
+}
+.navbar__brand {
+  font-weight: 700;
+}
+.navbar__links a {
+  color: #cfe0f5;
+  text-decoration: none;
+  margin-right: 1.2rem;
+  padding-bottom: 4px;
+}
+.navbar__links a.activo {
+  color: #fff;
+  border-bottom: 2px solid #4caf50;
+}
+.navbar__auth a,
+.navbar__auth button {
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.container {
+  max-width: 1000px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}

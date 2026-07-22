@@ -1,0 +1,48 @@
+<div class="tarjeta">
+  <h2>Registrar movimiento</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="campo">
+      <label for="productoId">Producto</label>
+      <select id="productoId" formControlName="productoId">
+        <option [ngValue]="null" disabled>Selecciona un producto</option>
+        <option *ngFor="let producto of productos" [ngValue]="producto.id">
+          {{ producto.nombre }} (stock actual: {{ producto.stock }})
+        </option>
+      </select>
+      <small class="error" *ngIf="productoId.invalid && productoId.touched">
+        Debes seleccionar un producto
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="tipo">Tipo de movimiento</label>
+      <select id="tipo" formControlName="tipo">
+        <option value="ENTRADA">Entrada</option>
+        <option value="SALIDA">Salida</option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="cantidad">Cantidad</label>
+      <input id="cantidad" type="number" formControlName="cantidad" />
+      <small class="error" *ngIf="cantidad.invalid && cantidad.touched">
+        La cantidad debe ser mayor a 0
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="motivo">Motivo (opcional)</label>
+      <input id="motivo" type="text" formControlName="motivo" placeholder="Ej: Donación, compra, uso en evento..." />
+    </div>
+
+    <small class="error" *ngIf="errorMensaje">{{ errorMensaje }}</small>
+
+    <div class="acciones-form">
+      <button type="submit" [disabled]="cargando">
+        {{ cargando ? "Guardando..." : "Registrar" }}
+      </button>
+      <a routerLink="/movimientos">Cancelar</a>
+    </div>
+  </form>
+</div>

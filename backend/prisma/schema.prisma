@@ -1,0 +1,69 @@
+// Este archivo define el modelo de datos. Prisma lo lee y genera
+// automáticamente un cliente de TypeScript totalmente tipado para
+// consultar la base de datos (esto es el "ORM").
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Lee la variable definida en .env
+}
+
+/// Tabla 1: Categoria
+/// Agrupa los productos de la bodega (ej: "Papelería", "Limpieza", "Tecnología")
+model Categoria {
+  id          Int        @id @default(autoincrement())
+  nombre      String     @unique @db.VarChar(100)
+  descripcion String?    @db.VarChar(255)
+  creadoEn    DateTime   @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  // Relación 1 (Categoria) -> N (Producto)
+  productos   Producto[]
+
+  @@map("categorias")
+}
+
+/// Tabla 2: Producto
+/// Cada producto pertenece a una categoría (Llave foránea categoriaId)
+model Producto {
+  id            Int          @id @default(autoincrement())
+  nombre        String       @db.VarChar(150)
+  descripcion   String?      @db.VarChar(255)
+  precio        Decimal      @db.Decimal(10, 2)
+  stock         Int          @default(0)
+  stockMinimo   Int          @default(5)
+  creadoEn      DateTime     @default(now())
+  actualizadoEn DateTime     @updatedAt
+
+  categoriaId   Int
+  categoria     Categoria    @relation(fields: [categoriaId], references: [id], onDelete: Restrict)
+
+  // Relación 1 (Producto) -> N (Movimiento)
+  movimientos   Movimiento[]
+
+  @@map("productos")
+}
+
+/// Tipo de movimiento de inventario (enum = lista fija de valores válidos)
+enum TipoMovimiento {
+  ENTRADA
+  SALIDA
+}
+
+/// Tabla 3: Movimiento
+/// Historial de entradas y salidas de cada producto (kardex de bodega)
+model Movimiento {
+  id          Int            @id @default(autoincrement())
+  tipo        TipoMovimiento
+  cantidad    Int
+  motivo      String?        @db.VarChar(255)
+  fecha       DateTime       @default(now())
+
+  productoId  Int
+  producto    Producto       @relation(fields: [productoId], references: [id], onDelete: Cascade)
+
+  @@map("movimientos")
+}

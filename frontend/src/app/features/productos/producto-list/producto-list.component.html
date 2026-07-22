@@ -1,0 +1,40 @@
+<div class="encabezado">
+  <h2>Productos</h2>
+  <a *ngIf="authService.estaAutenticado()" class="btn" routerLink="/productos/nuevo">
+    + Nuevo producto
+  </a>
+</div>
+
+<p *ngIf="cargando">Cargando productos...</p>
+<p class="error" *ngIf="errorMensaje">{{ errorMensaje }}</p>
+
+<table class="tabla" *ngIf="!cargando && productos.length">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Categoría</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th *ngIf="authService.estaAutenticado()">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productos">
+      <td>{{ producto.nombre }}</td>
+      <!-- Encadenamiento opcional (?.) evita el error si categoria aún no llegó -->
+      <td>{{ producto.categoria?.nombre || "—" }}</td>
+      <!-- Pipe "currency": transforma el número en formato de moneda (impuro/puro incorporado) -->
+      <td>{{ producto.precio | currency: "GTQ" }}</td>
+      <!-- [class.alerta]: property binding condicional a una clase CSS -->
+      <td [class.alerta]="tieneStockBajo(producto)">
+        {{ producto.stock }} / mín {{ producto.stockMinimo }}
+      </td>
+      <td *ngIf="authService.estaAutenticado()">
+        <a [routerLink]="['/productos/editar', producto.id]">Editar</a>
+        <button (click)="eliminar(producto)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!cargando && !productos.length">No hay productos registrados todavía.</p>

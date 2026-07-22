@@ -1,0 +1,24 @@
+<header class="navbar">
+  <div class="navbar__brand">📦 Inventario Bodega Kinal</div>
+
+  <!-- routerLink: navegación sin recargar la página (SPA) -->
+  <!-- routerLinkActive: agrega una clase CSS cuando la ruta está activa -->
+  <nav class="navbar__links">
+    <a routerLink="/productos" routerLinkActive="activo">Productos</a>
+    <a routerLink="/categorias" routerLinkActive="activo">Categorías</a>
+    <a routerLink="/movimientos" routerLinkActive="activo">Movimientos</a>
+  </nav>
+
+  <div class="navbar__auth">
+    <!-- *ngIf: directiva estructural, renderiza el elemento solo si la condición es verdadera -->
+    <a *ngIf="!authService.estaAutenticado()" routerLink="/login">Iniciar sesión</a>
+    <button *ngIf="authService.estaAutenticado()" (click)="cerrarSesion()">
+      Cerrar sesión
+    </button>
+  </div>
+</header>
+
+<main class="container">
+  <!-- router-outlet: aquí se renderiza el componente de la ruta activa -->
+  <router-outlet></router-outlet>
+</main>
