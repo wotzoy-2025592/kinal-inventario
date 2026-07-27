@@ -28,10 +28,15 @@ export class AuthService {
         // tap() ejecuta un efecto secundario (guardar el token) sin
         // modificar el valor que sigue fluyendo por el observable.
         tap((res) => {
-          if (res.data?.token) {
-            localStorage.setItem(this.TOKEN_KEY, res.data.token);
-          }
-        })
+  console.log("RESPUESTA DEL LOGIN:", res);
+
+  if (res.data?.token) {
+    localStorage.setItem(this.TOKEN_KEY, res.data.token);
+    console.log("TOKEN GUARDADO");
+  } else {
+    console.log("NO EXISTE TOKEN");
+  }
+})
       );
   }
 

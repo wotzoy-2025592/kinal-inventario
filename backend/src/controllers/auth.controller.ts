@@ -33,6 +33,8 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   res.json({
     ok: true,
     mensaje: "Inicio de sesión exitoso",
-    token,
+    data: {
+      token,
+    },
   });
 });

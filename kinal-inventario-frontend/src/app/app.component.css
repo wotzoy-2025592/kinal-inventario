@@ -1,35 +1,138 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.9rem 1.5rem;
-  background: #1e3a5f;
-  color: #fff;
+.navbar{
+
+    background:#0f172a;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 45px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
 }
-.navbar__brand {
-  font-weight: 700;
+
+.navbar__brand{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    letter-spacing:.5px;
+
 }
-.navbar__links a {
-  color: #cfe0f5;
-  text-decoration: none;
-  margin-right: 1.2rem;
-  padding-bottom: 4px;
+
+.navbar__links{
+    display:flex;
+    gap:28px;
 }
-.navbar__links a.activo {
-  color: #fff;
-  border-bottom: 2px solid #4caf50;
+
+.navbar__links a{
+    color:#cbd5e1;
+    text-decoration:none;
+    font-weight:500;
+    transition:.25s;
 }
+
+.navbar__links a:hover{
+    color:white;
+}
+
+.navbar__links .activo{
+    color:#60a5fa;
+}
+
+.navbar__auth{
+    display:flex;
+    align-items:center;
+}
+
 .navbar__auth a,
-.navbar__auth button {
-  color: #fff;
-  background: transparent;
-  border: 1px solid #fff;
-  padding: 0.35rem 0.8rem;
-  border-radius: 6px;
-  cursor: pointer;
+.navbar__auth button{
+    background:transparent;
+    color:white;
+    border:1px solid rgba(255,255,255,.35);
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.25s;
 }
-.container {
-  max-width: 1000px;
-  margin: 1.5rem auto;
-  padding: 0 1rem;
+
+.navbar__auth a:hover,
+.navbar__auth button:hover{
+    background:white;
+    color:#0f172a;
+}
+
+.container{
+    width:min(1200px,95%);
+    margin:35px auto;
+}
+
+/*=========================================================
+    FONDOS SEGÚN LA PANTALLA
+=========================================================*/
+
+.fondo-login{
+
+    background:rgba(190,230,255,.35);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    min-height:80vh;
+
+    transition:.4s;
+}
+
+.fondo-lista{
+
+    background:rgba(255,247,196,.40);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    min-height:80vh;
+
+    transition:.4s;
+}
+
+.fondo-formulario{
+
+    background:rgba(153, 247, 164, 0.4);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    min-height:80vh;
+
+    transition:.4s;
+}
+
+@media(max-width:900px){
+
+  .navbar{
+    flex-direction:column;
+    gap:20px;
+    padding:25px;
+  }
+
+  .navbar__links{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
 }

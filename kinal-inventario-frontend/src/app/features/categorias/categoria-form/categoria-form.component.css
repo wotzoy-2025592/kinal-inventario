@@ -1,1 +1,38 @@
 /* Estilos comunes de formularios en src/styles.css */
+.tarjeta{
+    max-width:700px;
+    margin:auto;
+}
+
+.tarjeta h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+textarea{
+    min-height:110px;
+}
+
+.acciones-form{
+    justify-content:flex-end;
+}
+
+button{
+    min-width:150px;
+}
+
+.acciones-form a{
+    min-width:150px;
+    text-align:center;
+}
+
+.error{
+    margin-top:6px;
+}
+
+@media(max-width:700px){
+
+    .acciones-form{
+        flex-direction:column;
+    }
+}

@@ -18,10 +18,10 @@
     <small class="error" *ngIf="errorMensaje">{{ errorMensaje }}</small>
 
     <div class="acciones-form">
-      <button type="submit" [disabled]="cargando">
+      <button type="submit" class="btn-guardar" [disabled]="cargando">
         {{ cargando ? "Guardando..." : "Guardar" }}
       </button>
-      <a routerLink="/categorias">Cancelar</a>
+      <a routerLink="/categorias" class="btn-cancelar">Cancelar</a>
     </div>
   </form>
 </div>

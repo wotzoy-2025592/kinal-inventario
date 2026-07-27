@@ -1,2 +1,47 @@
 /* Los estilos comunes (.tabla, .btn, .encabezado, etc.) están en src/styles.css
    para reutilizarlos en todos los componentes de listado. */
+.encabezado h2{
+   margin:0;
+}
+
+.btn{
+   min-width:190px;
+}
+
+.tabla td:last-child{
+   white-space:nowrap;
+}
+
+.tabla td:last-child a{
+   margin-right:12px;
+   color:#2563eb;
+   font-weight:600;
+}
+
+.tabla td:last-child button{
+   margin-left:4px;
+}
+
+.error{
+   margin:20px 0;
+   padding:14px;
+   border-radius:10px;
+   background:#fee2e2;
+   color:#b91c1c;
+}
+
+p{
+   margin-top:18px;
+}
+
+.tabla{
+   margin-top:25px;
+}
+
+@media(max-width:700px){
+
+   .btn{
+      width:100%;
+   }
+
+}

@@ -1,8 +1,10 @@
 <div class="encabezado">
-  <h2>Movimientos de inventario</h2>
-  <a *ngIf="authService.estaAutenticado()" class="btn" routerLink="/movimientos/nuevo">
-    + Registrar movimiento
-  </a>
+    <h2>Movimientos</h2>
+    <a
+        *ngIf="authService.estaAutenticado()"
+        routerLink="/movimientos/nuevo" class="btn">
+        + Registrar movimiento
+    </a>
 </div>
 
 <p *ngIf="cargando">Cargando movimientos...</p>

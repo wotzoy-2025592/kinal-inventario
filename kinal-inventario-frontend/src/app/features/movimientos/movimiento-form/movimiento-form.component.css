@@ -1,1 +1,91 @@
 /* Estilos comunes de formularios en src/styles.css */
+.tarjeta{
+
+    max-width:750px;
+
+    margin:auto;
+
+}
+
+.tarjeta h2{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+select{
+
+    cursor:pointer;
+
+}
+
+select option{
+
+    padding:10px;
+
+}
+
+input[type="number"]{
+
+    text-align:center;
+
+}
+
+#productoId{
+
+    font-weight:600;
+
+}
+
+#tipo{
+
+    max-width:220px;
+
+}
+
+.acciones-form{
+
+    justify-content:flex-end;
+
+    margin-top:25px;
+
+}
+
+button{
+
+    min-width:170px;
+
+}
+
+.acciones-form a{
+
+    min-width:170px;
+
+    text-align:center;
+
+}
+
+.error{
+
+    margin-top:6px;
+
+}
+
+@media(max-width:700px){
+
+    .tarjeta{
+        padding:22px;
+    }
+
+    .acciones-form{
+        flex-direction:column;
+    }
+
+    button,
+    .acciones-form a{
+
+    width:100%;
+    }
+}

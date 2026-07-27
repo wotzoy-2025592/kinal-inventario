@@ -1,7 +1,89 @@
-.fila {
-  display: flex;
-  gap: 1rem;
+.tarjeta{
+
+    max-width:900px;
+
+    margin:auto;
+
 }
-.fila .campo {
-  flex: 1;
+
+.tarjeta h2{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.fila{
+
+    margin-top:5px;
+
+}
+
+.fila .campo{
+
+    margin-bottom:0;
+
+}
+
+textarea{
+
+    min-height:120px;
+
+}
+
+input[type="number"]{
+
+    text-align:center;
+
+}
+
+.acciones-form{
+
+    justify-content:flex-end;
+
+    margin-top:25px;
+
+}
+
+button{
+
+    min-width:170px;
+
+}
+
+.acciones-form a{
+
+    min-width:170px;
+
+    text-align:center;
+
+}
+
+.error{
+    margin-top:6px;
+}
+
+@media(max-width:900px){
+
+  .fila{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:700px){
+
+  .tarjeta{
+    padding:22px;
+  }
+
+  .acciones-form{
+    flex-direction:column;
+  }
+
+  button,
+  .acciones-form a{
+    width:100%;
+  }
+
 }

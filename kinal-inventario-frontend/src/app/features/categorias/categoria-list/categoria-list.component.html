@@ -1,8 +1,11 @@
 <div class="encabezado">
-  <h2>Categorías</h2>
-  <a *ngIf="authService.estaAutenticado()" class="btn" routerLink="/categorias/nuevo">
-    + Nueva categoría
-  </a>
+    <h2>Categorías</h2>
+    <a
+        *ngIf="authService.estaAutenticado()"
+        routerLink="/categorias/nuevo"
+        class="btn">
+        + Agregar categoría
+    </a>
 </div>
 
 <p *ngIf="cargando">Cargando categorías...</p>
@@ -24,8 +27,17 @@
       <td>{{ categoria.descripcion || "—" }}</td>
       <td>{{ categoria._count?.productos ?? 0 }}</td>
       <td *ngIf="authService.estaAutenticado()">
-        <a [routerLink]="['/categorias/editar', categoria.id]">Editar</a>
-        <button (click)="eliminar(categoria)">Eliminar</button>
+        <a
+            class="btn-editar"
+            [routerLink]="['/categorias/editar',categoria.id]">
+            Editar
+        </a>
+
+        <button
+            class="btn-eliminar"
+            (click)="eliminar(categoria)">
+            Eliminar
+        </button>
       </td>
     </tr>
   </tbody>

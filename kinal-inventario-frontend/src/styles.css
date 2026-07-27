@@ -1,97 +1,478 @@
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f4f6f8;
-  color: #222;
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+    --color-primario:#1d4ed8;
+    --color-primario-hover:#1e40af;
+
+    --color-secundario:#0f172a;
+
+    --color-fondo:#f3f6fb;
+
+    --color-card:#ffffff;
+
+    --color-borde:#dbe3ee;
+
+    --color-texto:#263238;
+
+    --color-texto-secundario:#64748b;
+
+    --color-verde:#16a34a;
+
+    --color-rojo:#dc2626;
+
+    --color-naranja:#f59e0b;
+
+    --radio:14px;
+
+    --sombra:0 10px 30px rgba(15,23,42,.08);
+
+    --transicion:.25s;
+
+    --fondo-lista:#fff8e1;
+    --fondo-formulario:#c2f5c6;
 }
 
-.encabezado {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.tarjeta {
-  background: #fff;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  max-width: 600px;
+html{
+    scroll-behavior:smooth;
 }
 
-.campo {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
+body{
+
+    font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
+    background:var(--color-fondo);
+
+    color:var(--color-texto);
+
+    line-height:1.5;
+
 }
-.campo label {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
+.container{
+
+    width:min(1200px,95%);
+
+    margin:auto;
+
+    padding:35px 0;
+
 }
+
+/* =====================================================
+   TITULOS
+===================================================== */
+
+h1,h2,h3{
+
+    color:var(--color-secundario);
+
+    font-weight:700;
+
+}
+
+h2{
+
+    margin-bottom:20px;
+
+}
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.encabezado{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.tarjeta{
+    background:#ffffff;
+    padding:35px;
+    border-radius:18px;
+
+    border-left:8px solid #22c55e;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.12);
+
+    border:1px solid #c8e6c9;
+}
+
+.tarjeta h2{
+    margin-bottom:25px;
+    padding-bottom:12px;
+    border-bottom:3px solid #22c55e;
+    color:#166534;
+}
+
+.tarjeta--angosta{
+
+    max-width:450px;
+
+    margin:40px auto;
+
+}
+
+/* =====================================================
+   FORMULARIOS
+===================================================== */
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.campo{
+    display:flex;
+    flex-direction:column;
+}
+
+.campo label{
+    margin-bottom:8px;
+    font-weight:600;
+    display: block;
+    color: #15803d;
+    font-size: 16px;
+}
+
 .campo input,
 .campo select,
-.campo textarea {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 0.95rem;
+.campo textarea{
+    width:100%;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid var(--color-borde);
+    outline:none;
+    transition:var(--transicion);
+    background:#e2f7e2;
+    font-size:15px;
 }
 
-.error {
-  color: #c0392b;
-  font-size: 0.82rem;
+.campo textarea{
+    resize:vertical;
 }
 
-.acciones-form {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus{
+    border-color:var(--color-primario);
+    box-shadow:0 0 0 4px rgba(29,78,216,.12);
 }
+
+.fila{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+/* =====================================================
+   BOTONES
+===================================================== */
 
 button,
-.btn {
-  background: #1e3a5f;
-  color: #fff;
-  border: none;
-  padding: 0.55rem 1.1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:var(--color-primario);
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:600;
+    transition:var(--transicion);
 }
 
-.tabla {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
+button:hover,
+.btn:hover{
+    background:var(--color-primario-hover);
+    transform:translateY(-2px);
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.acciones-form{
+    display:flex;
+    gap:15px;
+    margin-top:5px;
+}
+
+.acciones-form a{
+    background:#64748b;
+}
+
+.acciones-form a:hover{
+    background:#475569;
+}
+
+/* =====================================================
+   TABLAS
+===================================================== */
+
+.tabla{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:14px;
+    background:white;
+    box-shadow:var(--sombra);
+}
+
+.tabla thead{
+    background:var(--color-secundario);
+    color:white;
+}
+
+.tabla th{
+    padding:16px;
+    text-align:left;
+}
+
+.tabla td{
+    padding:16px;
+    border-bottom:1px solid #edf2f7;
+}
+
+.tabla tbody tr{
+    transition:.2s;
+}
+
+.tabla tbody tr:hover{
+    background:#f8fafc;
+}
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+.tabla a{
+    color:var(--color-primario);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.tabla a:hover{
+    text-decoration:underline;
+}
+
+/* =====================================================
+   ELIMINAR
+===================================================== */
+
+.tabla button{
+    background:var(--color-rojo);
+    padding:8px 14px;
+    font-size:13px;
+}
+
+.tabla button:hover{
+    background:#b91c1c;
+}
+
+/* =====================================================
+   MENSAJES
+===================================================== */
+
+.error{
+    color:var(--color-rojo);
+    font-size:.9rem;
+}
+
+.alerta{
+    color:var(--color-rojo);
+    font-weight:bold;
+}
+
+/* Badge entrada */
+
+.entrada{
+    background:#dcfce7;
+    color:#166534;
+    padding:6px 10px;
+    border-radius:999px;
+    font-weight:bold;
+}
+
+/* Badge salida */
+
+.salida{
+    background:#fee2e2;
+    color:#991b1b;
+    padding:6px 10px;
+    border-radius:999px;
+    font-weight:bold;
+}
+
+.ayuda{
+    color:var(--color-texto-secundario);
+    margin-top:20px;
+}
+
+/*====================================
+
+BOTONES CRUD
+
+====================================*/
+
+.btn-editar{
+    display:inline-block;
+    padding:10px 18px;
+    background:#1de06f;
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
+    margin-right:10px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn-editar:hover{
+    background:#02bd56;
+}
+
+.btn-eliminar{
+    background:#d32f2f;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:10px 18px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn-eliminar:hover{
+    background:#a22020;
+}
+
+.btn-guardar {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #1976d2;
+  color: white;
+  border: none;
   border-radius: 8px;
-  overflow: hidden;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: .25s;
 }
-.tabla th,
-.tabla td {
-  padding: 0.7rem 0.9rem;
-  text-align: left;
-  border-bottom: 1px solid #eee;
+
+
+.btn-guardar:hover {
+  background: #0d47a1;
 }
-.tabla th {
-  background: #eef2f6;
+
+
+.btn-cancelar {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #dc3545;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 10px;
+  transition: .25s;
 }
-.tabla td a {
-  margin-right: 0.8rem;
-  color: #1e3a5f;
+
+
+.btn-cancelar:hover {
+  background: #a71d2a;
 }
-.tabla td button {
-  background: #c0392b;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.8rem;
+
+.btn{
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+.fondo-lista{
+    background:var(--fondo-lista);
+}
+
+.fondo-formulario{
+    background:var(--fondo-formulario);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+  .fila{
+    grid-template-columns:1fr;
+  }
+
+  .tabla{
+    display:block;
+    overflow-x:auto;
+  }
+}
+  
+@media(max-width:700px){
+
+  .encabezado{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  button,
+  .btn,
+  .acciones-form a{
+    width:100%;
+  }
+
+  .acciones-form{
+    flex-direction:column;
+  }
 }
